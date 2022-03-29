@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tabatha's Trains</title>
+</head>
+<body>
+	<h1>Tabatha's Train Times</h1>
+	<h2>Wood Street to Liverpool Street</h2>
+	<ul>
+		{% for train in inbound %}
+		<li> {{ train }} </li>
+	    {% endfor %}
+	</ul>
+
+	<h2> Liverpool Street to Home</h2>
+	<ul>
+		{% for train in homebound %}
+		<li> {{ train }} </li>
+	    {% endfor %}
+	</ul>
+</body>
+</html>
