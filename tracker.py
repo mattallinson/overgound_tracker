@@ -4,19 +4,15 @@
 information, ordered from soonest to latest'''
 
 import requests
-import json
 
 URL = 'https://api.tfl.gov.uk/'
-
-with open('stations.json') as stations_file:
-  STATIONS = json.load(stations_file)
 
 def query_maker(origin):
   ''' Returns a query URL for the TFL ArrivalDepartures API, which only 
   works for the overground'''
   query = '/'.join([URL,
                   'StopPoint',
-                  STATIONS[origin],
+                  origin,
                   'ArrivalDepartures?lineIds=london-overground'
                   ])
         
@@ -33,7 +29,7 @@ def train_finder(origin, destination, all_data=False):
     
     trains = sorted(
                     [train for train in train_request.json()
-                    if train['destinationNaptanId'] == STATIONS[destination]
+                    if train['destinationNaptanId'] == destination
                     and train['minutesAndSecondsToDeparture']!=''],
                     key=lambda d: d['scheduledTimeOfDeparture']
                     )
